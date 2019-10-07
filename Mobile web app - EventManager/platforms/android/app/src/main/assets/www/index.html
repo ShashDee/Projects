@@ -1,0 +1,585 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Event Manager</title>
+
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:
+	http://192.168.1.11:3009 http://192.168.1.11;
+	script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+	style-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+	media-src *;
+	img-src 'self' * data: content:;">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+	<link rel="stylesheet" href="css/jquerymobile.css" />
+	<link rel="stylesheet" href="css/DroneLogs.css" />
+
+	<script src="js/jquery.js"></script>
+	<script src="js/jquerymobile.js"></script>
+	<script src="js/DroneLogs.js" type="text/javascript"></script>
+	<script src="../server/crossdomain-ajax.js" type="text/javascript"></script>
+</head> 
+
+<body> 
+	<!-- start of homepage -->
+	<div id="home_page" data-role="page">
+
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b">
+			<h1>Event Manager</h1>
+		</div><!-- end of header -->
+
+	    <ul data-role="listview" data-theme="b">
+			<li data-role="collapsible" data-iconpos="right" data-inset="false">
+				<h2>Master Modules</h2>
+				<ul data-role="listview" class="menu-items">
+					<li><a id="evt_type_btn" onclick="loadPage(this);">Event Types</a></li>
+					<li><a id="venues_btn" onclick="loadPage(this);">Venues</a></li>
+					<li><a id="suppliers_btn" onclick="loadPage(this);">Suppliers</a></li>
+					<li><a id="customers_btn" onclick="loadPage(this);">Customers</a></li>
+				</ul>
+			</li>
+			<li data-role="collapsible" data-iconpos="right" data-inset="false">
+			<h2>Event Modules</h2>
+				<ul data-role="listview" class="menu-items">
+					<li><a id="events_btn" onclick="loadPage(this);">Events</a></li>
+					<li><a id="checklist_btn" onclick="loadPage(this);">Event Checklist</a></li>
+					<li><a id="agenda_btn" onclick="loadPage(this);">Event Agenda</a></li>
+				</ul>
+			</li>
+		</ul>
+
+		<div data-role="content">
+			<ul data-role="listview" data-inset="true" id="quick_access_checklists" data-divider-theme="a">
+				<li id = "title_li" data-role="list-divider">Ongoing Events: Quick Access to Checklist</li>
+				<li id="no_chklist_li">No Ongoing Events At The Moment.</li>
+			</ul>
+		</div>
+
+		<!-- footer of the page -->
+		<div data-role="footer" data-theme="b">
+			<h6>&copy; CQUniversity, 2019</h6>
+		</div><!-- end of footer -->
+	</div>
+
+	<!-- Event Types page -->
+	<div id="event_type" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a data-role="button" data-corners="false" onclick="resetEventTypeForm();">Clear</a>
+			<h1>Event Types</h1>
+			<a onclick="loadViewPage('event_types');" data-corners="false">View Event Types</a>
+		</div> <!-- end of header -->
+
+		<!-- data entry section -->
+		<div data-role="content">
+			<label for="evt_type_code_input">Event Type Code:</label>
+			<input type="text" id="evt_type_code_input" class="input-corner-box evt_type_inputs" placeholder="alphanumeric" />
+
+			<label for="evt_type_input">Event Type:</label>
+			<input type="text" id="evt_type_input" class="input-corner-box evt_type_inputs" placeholder="Event type name" />
+
+			<button id= "add_evt_btn" data-corners="false" class="ui-btn ui-shadow">Add Event Type</button>
+            <button id= "edit_evt_btn" data-corners="false" class="ui-btn ui-shadow hidden">Edit Event Type</button>
+        </div> <!-- end of data entry section -->
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a href="index.html" onclick="resetHome();" data-role="button" data-corners="false" data-icon="home">Home</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Show event types page -->
+	<div id="view_event_types" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<h1>Event Types</h1>
+		</div> <!-- end of header -->
+
+		<div data-role="content">
+			<table id="evt_types_table" class="res-table">
+				<thead>
+					<tr>
+						<th scope="col">Event Type Code</th>
+						<th scope="col">Event Type</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody id="evt_types_tbody">
+
+				</tbody>
+			</table>
+		</div>
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a onclick="goBack('event_types');" data-add-back-btn="true" data-role="button" data-corners="false" data-icon="arrow-l">Back</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Venues page -->
+	<div id="venue" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a data-role="button" data-corners="false" onclick="resetVenueForm();">Clear</a>
+			<h1>Venues</h1>
+			<a onclick="loadViewPage('venues');" data-corners="false">View Venues</a>
+		</div> <!-- end of header -->
+
+		<!-- data entry section -->
+		<div data-role="content">
+			<label for="venue_name_input">Venue Name:</label>
+			<input type="text" id="venue_name_input" class="input-corner-box venue_inputs" placeholder="Venue name" />
+
+			<label for="venue_contact_input">Contact No:</label>
+			<input type="text" id="venue_contact_input" class="input-corner-box venue_inputs" placeholder="numeric" />
+
+			<label for="venue_address_input">Address:</label>
+			<input type="text" id="venue_address_input" class="input-corner-box venue_inputs" placeholder="Venue address" />
+
+			<label for="venue_email_input">Email:</label>
+			<input type="email" id="venue_email_input" class="input-corner-box venue_inputs" placeholder="E-mail address" />
+
+			<label for="hall_input">Hall:</label>
+			<fieldset class="ui-grid-a">
+				<div class="ui-block-a"><input id="hall_input" type="text" class="input-corner-box venue_inputs" placeholder="Hall Name"></div>
+				<div class="ui-block-b"><input id="add_hall_btn" type="button" value="Add Hall" data-theme="b"></div>
+			</fieldset>
+
+			<ul data-role="listview" data-inset="true" id="halls_list">
+				<li id="no_li">No Halls</li>
+			</ul>
+
+			<button id="add_venue_btn" data-corners="false" class="ui-btn ui-shadow">Add Venue</button>
+			<button id="edit_venue_btn" data-corners="false" class="ui-btn ui-shadow hidden">Edit Venue</button>
+		</div> <!-- end of data entry section -->
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a href="index.html" onclick="resetHome();" data-role="button" data-corners="false" data-icon="home">Home</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Show venus page -->
+	<div id="view_venues" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<h1>Venues</h1>
+		</div> <!-- end of header -->
+
+		<div data-role="content">
+			<table id="venues_table" class="res-table">
+				<thead>
+				<tr>
+					<th scope="col">Venue Name</th>
+					<th scope="col">Contact No.</th>
+					<th scope="col">Email</th>
+					<th scope="col">Actions</th>
+				</tr>
+				</thead>
+				<tbody id="venues_tbody">
+
+				</tbody>
+			</table>
+		</div>
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a onclick="goBack('venues');" data-add-back-btn="true" data-role="button" data-corners="false" data-icon="arrow-l">Back</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Suppliers page -->
+	<div id="supplier" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a data-role="button" data-corners="false" onclick="resetSupplierForm();">Clear</a>
+			<h1>Suppliers</h1>
+			<a onclick="loadViewPage('suppliers');" data-corners="false">View Suppliers</a>
+		</div> <!-- end of header -->
+
+		<!-- data entry section -->
+		<div data-role="content">
+			<label for="supplier_name_input">Supplier Name:</label>
+			<input type="text" id="supplier_name_input" class="input-corner-box supplier_inputs" placeholder="Supplier name" />
+
+			<label for="sup_contact_name_input">Contact Person</label>
+			<input type="text" id="sup_contact_name_input" class="input-corner-box supplier_inputs" placeholder="Name" />
+
+			<label for="sup_contact_desig_input">Contact Person Designation</label>
+			<input type="text" id="sup_contact_desig_input" class="input-corner-box supplier_inputs" placeholder="Designation" />
+
+			<label for="supplier_contact_input">Contact No:</label>
+			<input type="text" id="supplier_contact_input" class="input-corner-box supplier_inputs" placeholder="numeric" />
+
+			<label for="supplier_address_input">Address:</label>
+			<input type="text" id="supplier_address_input" class="input-corner-box supplier_inputs" placeholder="Supplier office address" />
+
+			<label for="supplier_email_input">Email:</label>
+			<input type="email" id="supplier_email_input" class="input-corner-box supplier_inputs" placeholder="E-mail address" />
+
+			<button id="add_supplier_btn" data-corners="false" class="ui-btn ui-shadow">Add Supplier</button>
+			<button id="edit_supplier_btn" data-corners="false" class="ui-btn ui-shadow hidden">Edit Supplier</button>
+		</div> <!-- end of data entry section -->
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a href="index.html" onclick="resetHome();" data-role="button" data-corners="false" data-icon="home">Home</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Show suppliers page -->
+	<div id="view_suppliers" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<h1>Suppliers</h1>
+		</div> <!-- end of header -->
+
+		<div data-role="content">
+			<table id="suppliers_table" class="res-table">
+				<thead>
+				<tr>
+					<th scope="col">Supplier Name</th>
+					<th scope="col">Address</th>
+					<th scope="col">Contact Person</th>
+					<th scope="col">Contact No.</th>
+					<th scope="col">Actions</th>
+				</tr>
+				</thead>
+				<tbody id="suppliers_tbody">
+
+				</tbody>
+			</table>
+		</div>
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a onclick="goBack('suppliers');" data-add-back-btn="true" data-role="button" data-corners="false" data-icon="arrow-l">Back</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Customers page -->
+	<div id="customer" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a data-role="button" data-corners="false" onclick="resetCustomerForm();">Clear</a>
+			<h1>Customers</h1>
+			<a onclick="loadViewPage('customers');" data-corners="false">View Customers</a>
+		</div> <!-- end of header -->
+
+		<!-- data entry section -->
+		<div data-role="content">
+			<label for="title_select">Customer Title:</label>
+			<select id="title_select" data-corners="false">
+				<option data-hidden="true" value = "">Select Title</option>
+				<option value = "Mr">Mr</option>
+				<option value = "Mrs">Mrs</option>
+				<option value = "Ms">Ms</option>
+				<option value = "Dr">Dr</option>
+				<option value = "Hon">Hon</option>
+				<option value = "Prof">Prof</option>
+			</select>
+
+			<label for="customer_name_input">Customer Name:</label>
+			<input type="text" id="customer_name_input" class="input-corner-box customer_inputs" placeholder="Customer name" />
+
+			<label for="customer_contact_input">Contact No:</label>
+			<input type="text" id="customer_contact_input" class="input-corner-box customer_inputs" placeholder="numeric" />
+
+			<label for="customer_address_input">Address:</label>
+			<input type="text" id="customer_address_input" class="input-corner-box customer_inputs" placeholder="Customer address" />
+
+			<label for="customer_email_input">Email:</label>
+			<input type="email" id="customer_email_input" class="input-corner-box customer_inputs" placeholder="Customer E-mail" />
+
+			<label for="customer_reg_date_input">Registered Date:</label>
+			<input type="email" id="customer_reg_date_input" class="input-corner-box customer_inputs" readonly="true" placeholder="Current Date" />
+
+			<button id="add_customer_btn" data-corners="false" class="ui-btn ui-shadow">Add Customer</button>
+			<button id="edit_customer_btn" data-corners="false" class="ui-btn ui-shadow hidden">Edit Customer</button>
+		</div> <!-- end of data entry section -->
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a href="index.html" onclick="resetHome();" data-role="button" data-corners="false" data-icon="home">Home</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Show customers page -->
+	<div id="view_customers" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<h1>Customers</h1>
+		</div> <!-- end of header -->
+
+		<div data-role="content">
+			<table id="customers_table" class="res-table">
+				<thead>
+				<tr>
+					<th scope="col">Customer Name</th>
+					<th scope="col">Contact No.</th>
+					<th scope="col">Email</th>
+					<th scope="col">Actions</th>
+				</tr>
+				</thead>
+				<tbody id="customers_tbody">
+
+				</tbody>
+			</table>
+		</div>
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a onclick="goBack('customers');" data-add-back-btn="true" data-role="button" data-corners="false" data-icon="arrow-l">Back</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Events page -->
+	<div id="event" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a data-role="button" data-corners="false" onclick="resetEventForm();">Clear</a>
+			<h1>Events</h1>
+			<a onclick="loadViewPage('events');" data-corners="false">View Events</a>
+		</div> <!-- end of header -->
+
+		<!-- data entry section -->
+		<div data-role="content">
+			<label for="event_code_input">Event Code:</label>
+			<input type="text" id="event_code_input" class="input-corner-box event_inputs" placeholder="Event Code" />
+
+			<label for="event_name_input">Event Name:</label>
+			<input type="text" id="event_name_input" class="input-corner-box event_inputs" placeholder="Event Name" />
+
+			<label for="event_date_input">Event Date:</label>
+			<input type="text" data-role="date" data-inline="true" id="event_date_input" class="input-corner-box event_inputs" placeholder="DD/MM/YYYY" />
+
+			<label for="start_time_input">Start Time:</label>
+			<input type="text" id="start_time_input" class="input-corner-box event_inputs" placeholder="HH:MM (24 Hours Format)" />
+
+			<label for="end_time_input">End Time:</label>
+			<input type="text" id="end_time_input" class="input-corner-box event_inputs" placeholder="HH:MM (24 Hours Format)" />
+
+			<label for="event_type_select">Event Type:</label>
+			<select id="event_type_select" data-corners="false">
+				<option data-hidden="true" value = "">Select Event Type</option>
+			</select>
+
+			<label for="venue_select">Venue:</label>
+			<select id="venue_select" data-corners="false">
+				<option data-hidden="true" value = "">Select Venue</option>
+			</select>
+
+			<label for="customer_select">Customer:</label>
+			<select id="customer_select" data-corners="false">
+				<option data-hidden="true" value = "">Select Customer</option>
+			</select>
+
+			<label for="budget_input">Budget</label>
+			<input type="number" id="budget_input" class="input-corner-box event_inputs" placeholder="AUD" />
+
+			<label for="remarks_input">Remarks</label>
+			<textarea cols="40" rows="8" name="textarea" id="remarks_input" class="event_inputs"></textarea>
+
+			<label for="event_complete_flip">Event Complete:</label>
+			<select name="event_complete_flip" id="event_complete_flip" data-role="slider" data-mini="true">
+				<option value="0" selected="">No</option>
+				<option value="1">Yes</option>
+			</select>
+
+			<button id="add_event_btn" data-corners="false" class="ui-btn ui-shadow">Add Event</button>
+			<button id="edit_event_btn" data-corners="false" class="ui-btn ui-shadow hidden">Edit Event</button>
+		</div> <!-- end of data entry section -->
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a href="index.html" onclick="resetHome();" data-role="button" data-corners="false" data-icon="home">Home</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Show events page -->
+	<div id="view_events" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<h1>Events</h1>
+		</div> <!-- end of header -->
+
+		<div data-role="content">
+			<table id="events_table" class="res-table">
+				<thead>
+				<tr>
+					<th scope="col">Event Code & Name</th>
+					<th scope="col">Event Date & Time</th>
+					<th scope="col">Event Type</th>
+					<th scope="col">Venue</th>
+					<th scope="col">Customer</th>
+					<th scope="col">Actions</th>
+				</tr>
+				</thead>
+				<tbody id="events_tbody">
+
+				</tbody>
+			</table>
+		</div>
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a onclick="goBack('events');" data-add-back-btn="true" data-role="button" data-corners="false" data-icon="arrow-l">Back</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Events Lookup for adding Checklist page -->
+	<div id="events_lookup_checklist" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<h1>Events</h1>
+		</div> <!-- end of header -->
+
+		<div data-role="content">
+			<table id="events_checklist_table" class="res-table">
+				<thead>
+				<tr>
+					<th scope="col">Event Code & Name</th>
+					<th scope="col">Event Date & Time</th>
+					<th scope="col">Event Type</th>
+					<th scope="col">Venue</th>
+					<th scope="col">Customer</th>
+					<th scope="col">Actions</th>
+				</tr>
+				</thead>
+				<tbody id="events_checklist_tbody">
+
+				</tbody>
+			</table>
+		</div>
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a href="index.html" onclick="resetHome();" data-role="button" data-corners="false" data-icon="home">Home</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Events page -->
+	<div id="event_checklist" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a data-role="button" data-corners="false" onclick="resetChecklistForm();">Clear</a>
+			<h1>Event Checklist</h1>
+			<a onclick="goBack('event_checklist');" data-add-back-btn="true" data-role="button" data-corners="false" data-icon="arrow-l">Back</a>
+		</div> <!-- end of header -->
+
+		<!-- data entry section -->
+		<div data-role="content">
+			<label for="item_input">Checklist Item:</label>
+			<input type="text" id="item_input" class="input-corner-box checklist_inputs" placeholder="Checklist Item" />
+
+			<label for="deadline_input">Deadline:</label>
+			<input type="text" data-role="date" data-inline="true" id="deadline_input" class="input-corner-box checklist_inputs" placeholder="DD/MM/YYYY" />
+
+			<button id="add_item_btn" data-corners="false" class="ui-btn ui-shadow">Add Item</button>
+
+			<table id="checklist_table" class="res-table">
+				<thead>
+				<tr>
+					<th scope="col">Item</th>
+					<th scope="col">Deadline</th>
+					<th scope="col">Status</th>
+				</tr>
+				</thead>
+				<tbody id="checklist_tbody">
+					<tr id="no_items_tr"><td colspan="3">No Items Added</td></tr>
+				</tbody>
+			</table>
+
+			<button id="save_checklist_btn" data-corners="false" class="ui-btn ui-shadow">Save Checklist</button>
+			<button id="edit_checklist_btn" data-corners="false" class="ui-btn ui-shadow hidden">Update Checklist</button>
+		</div> <!-- end of data entry section -->
+	</div>
+
+	<!-- Events Lookup for adding Agenda page -->
+	<div id="events_lookup_agenda" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<h1>Events</h1>
+		</div> <!-- end of header -->
+
+		<div data-role="content">
+			<table id="events_agenda_table" class="res-table">
+				<thead>
+				<tr>
+					<th scope="col">Event Code & Name</th>
+					<th scope="col">Event Date & Time</th>
+					<th scope="col">Event Type</th>
+					<th scope="col">Venue</th>
+					<th scope="col">Customer</th>
+					<th scope="col">Actions</th>
+				</tr>
+				</thead>
+				<tbody id="events_agenda_tbody">
+
+				</tbody>
+			</table>
+		</div>
+
+		<!-- footer of the page -->
+		<div data-role="footer" class="ui-bar" data-theme="b">
+			<a href="index.html" onclick="resetHome();" data-role="button" data-corners="false" data-icon="home">Home</a>
+		</div> <!-- end of footer -->
+	</div>
+
+	<!-- Agenda page -->
+	<div id="event_agenda" data-role="page">
+		<!-- header of the page -->
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a data-role="button" data-corners="false" onclick="resetAgendaForm();">Clear</a>
+			<h1>Event Agenda</h1>
+			<a onclick="goBack('event_agenda');" data-add-back-btn="true" data-role="button" data-corners="false" data-icon="arrow-l">Back</a>
+		</div> <!-- end of header -->
+
+		<!-- data entry section -->
+		<div data-role="content">
+			<label for="agenda_input">Agenda Item:</label>
+			<input type="text" id="agenda_input" class="input-corner-box agenda_inputs" placeholder="Agenda Item" />
+
+			<label for="agenda_start_time_input">Start Time:</label>
+			<input type="text" id="agenda_start_time_input" class="input-corner-box agenda_inputs" placeholder="HH:MM (24 Hour Format)" />
+
+			<label for="agenda_end_time_input">End Time:</label>
+			<input type="text" id="agenda_end_time_input" class="input-corner-box agenda_inputs" placeholder="HH:MM (24 Hour Format)" />
+
+			<button id="add_agenda_item_btn" data-corners="false" class="ui-btn ui-shadow">Add Item</button>
+
+			<table id="agenda_table" class="res-table">
+				<thead>
+				<tr>
+					<th scope="col">Item</th>
+					<th scope="col">Duration</th>
+					<th scope="col">Actions</th>
+				</tr>
+				</thead>
+				<tbody id="agenda_tbody">
+				<tr id="no_agenda_tr"><td colspan="3">No Items Added</td></tr>
+				</tbody>
+			</table>
+
+			<button id="save_agenda_btn" data-corners="false" class="ui-btn ui-shadow">Save Agenda</button>
+			<button id="edit_agenda_btn" data-corners="false" class="ui-btn ui-shadow hidden">Update Agenda</button>
+		</div> <!-- end of data entry section -->
+	</div>
+
+	<!-- delete confirmation dialog box  -->
+	<div data-role="page" id="deleteConfirmationDialog">
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<h1>Delete Record</h1>
+		</div>
+		<div data-role="content">
+			<h2>Are you sure?</h2>
+
+			<a onclick="clearDeleteData();" data-rel="back" data-role="button" data-corners="false" class="inline-btns">No</a>
+			<a onclick="deleteRecord();" data-role="button" data-corners="false" class="inline-btns">Yes</a>
+		</div>
+	</div> <!-- end of dialog box -->
+
+</body>
+</html>

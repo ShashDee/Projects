@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="20sp"
+        android:paddingStart="20sp"
+        android:paddingEnd="20sp"
+        tools:context=".ProfileFragment">
+
+        <TextView
+            android:id="@+id/username_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/username_field" />
+
+        <EditText
+            android:id="@+id/username_ed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username_hint"
+            android:layout_below="@id/username_tv"/>
+
+        <TextView
+            android:id="@+id/password_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password_field"
+            android:layout_below="@id/username_ed"/>
+
+        <EditText
+            android:id="@+id/password_ed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_hint"
+            android:layout_below="@id/password_tv"/>
+
+        <TextView
+            android:id="@+id/repeat_password_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/repeat_pwd_field"
+            android:layout_below="@id/password_ed"/>
+
+        <EditText
+            android:id="@+id/repeat_password_ed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/repeat_pwd_hint"
+            android:layout_below="@id/repeat_password_tv"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/repeat_password_ed"
+            tools:ignore="RtlSymmetry">
+
+            <Button
+                android:id="@+id/save_profile_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/save_profile_btn"
+                android:textAlignment="center"
+                android:onClick="saveProfile" />
+
+            <Button
+                android:id="@+id/cancel_profile_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/cancel_profile_btn"
+                android:textAlignment="center"
+                android:onClick="cancelProfile" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

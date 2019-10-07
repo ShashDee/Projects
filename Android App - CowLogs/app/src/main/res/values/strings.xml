@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">CowLogs</string>
+    <string name="action_send">Send</string>
+    <string name="action_save">Save</string>
+    <string name="action_profile">Profile</string>
+    <string name="fragment_title">Angus</string>
+    <string name="id_field">ID: </string>
+    <string name="id_hint">XXXX</string>
+    <string name="weight_field">Weight (kg): </string>
+    <string name="weight_hint">1&#8211;5000</string>
+    <string name="age_field">Age (months): </string>
+    <string name="age_hint">1&#8211;120</string>
+    <string name="condition_field">Condition: </string>
+    <string name="condition_prompt"> </string>
+
+    <string-array name="condition_options">
+        <item> </item>
+        <item>Poor</item>
+        <item>Average</item>
+        <item>Good</item>
+    </string-array>
+
+    <string name="save_button">SAVE LOG ENTRY</string>
+    <string name="show_button">SHOW LOG ENTRIES</string>
+    <string name="prev_button">PREVIOUS</string>
+    <string name="next_button">NEXT</string>
+    <string name="home_button">HOME</string>
+    <string name="return_button">RETURN TO %1$s</string>
+
+    <string name="username_field">Username: </string>
+    <string name="username_hint">Your name?</string>
+    <string name="password_field">Password: </string>
+    <string name="password_hint">Password?</string>
+    <string name="repeat_pwd_field">Repeat Password: </string>
+    <string name="repeat_pwd_hint">Repeat Password Here</string>
+    <string name="save_profile_btn">SAVE PROFILE</string>
+    <string name="cancel_profile_btn">CANCEL PROFILE</string>
+    <string name="title_location_permission">Access Location Permission</string>
+    <string name="text_location_permission">Cow Logs need to access location information. Do you grant permisson?</string>
+</resources>

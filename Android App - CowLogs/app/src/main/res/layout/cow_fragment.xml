@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="20sp"
+        tools:context=".CowFragment">
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/fragment_title"
+            android:textSize = "32sp"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/title_tv"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:id="@+id/id_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/id_field"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/id_ed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/id_hint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/linearLayout1"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:id="@+id/weight_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/weight_field"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/weight_ed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/weight_hint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/linearLayout2"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:id="@+id/age_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/age_field"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/age_ed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/age_hint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/linearLayout3"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:id="@+id/condition_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition_field"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/condition_sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center">
+            </Spinner>
+
+            <Button
+                android:id="@+id/save_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save_button"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/linearLayout4"
+            tools:ignore="RtlSymmetry">
+
+            <Button
+                android:id="@+id/show_entries_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/show_button"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/linearLayout5"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            tools:ignore="RtlSymmetry">
+
+            <Button
+                android:id="@+id/prev_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="bottom"
+                android:text="@string/prev_button"
+                android:textAlignment="center"
+                android:onClick="prevControl" />
+
+            <Button
+                android:id="@+id/next_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="bottom"
+                android:text="@string/next_button"
+                android:textAlignment="center"
+                android:onClick="nextControl" />
+
+            <Button
+                android:id="@+id/home_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="bottom"
+                android:text="@string/home_button"
+                android:textAlignment="center"
+                android:onClick="homeControl" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>
