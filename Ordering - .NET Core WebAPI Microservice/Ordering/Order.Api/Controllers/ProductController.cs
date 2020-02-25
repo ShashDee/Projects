@@ -62,6 +62,8 @@ namespace Ordering.Api.Controllers
 
         [Route("create")]
         [HttpPost]
+        [ProducesResponseType(typeof(Guid), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<Guid>> AddProduct([FromBody] AddProductCommand addProductCommand)
         {
             _logger.LogInformation(
@@ -76,6 +78,8 @@ namespace Ordering.Api.Controllers
 
         [Route("update")]
         [HttpPut]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<bool>> UpdatedProduct([FromBody] UpdateProductCommand updateProductCommand)
         {
             _logger.LogInformation(
@@ -90,6 +94,8 @@ namespace Ordering.Api.Controllers
 
         [Route("delete")]
         [HttpDelete]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<bool>> DeleteProduct(Guid id)
         {
             var deleteProductCommand = new DeleteProductCommand(id);

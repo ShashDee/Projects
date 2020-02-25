@@ -62,6 +62,8 @@ namespace Ordering.Api.Controllers
 
         [Route("create")]
         [HttpPost]
+        [ProducesResponseType(typeof(Guid), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<Guid>> AddOrder([FromBody] AddOrderCommand addOrderCommand)
         {
             _logger.LogInformation(
@@ -90,6 +92,8 @@ namespace Ordering.Api.Controllers
 
         [Route("delete")]
         [HttpDelete]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<bool>> DeleteOrder(Guid id)
         {
             var deleteOrderCommand = new DeleteOrderCommand(id);

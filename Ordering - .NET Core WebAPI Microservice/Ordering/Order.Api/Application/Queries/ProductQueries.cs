@@ -34,7 +34,7 @@ namespace Ordering.Api.Application.Queries
                 if (result.AsList().Count > 0)
                     return MapProducts(result);
 
-                return null;
+                return Enumerable.Empty<Product>();
             }
         }
 
@@ -71,7 +71,10 @@ namespace Ordering.Api.Application.Queries
                     param: new { productName = '%'+name.ToLower()+'%' }
                     );
 
-                return MapProducts(result);
+                if (result.AsList().Count > 0)
+                    return MapProducts(result);
+
+                return Enumerable.Empty<Product>();
             }
         }
 

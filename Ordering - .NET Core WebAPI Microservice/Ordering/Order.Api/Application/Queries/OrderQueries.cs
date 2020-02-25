@@ -19,7 +19,7 @@ namespace Ordering.Api.Application.Queries
             _connectionString = !string.IsNullOrWhiteSpace(constr) ? constr : throw new ArgumentNullException(nameof(constr));
         }
         
-        public async Task<IEnumerable<ViewModels.Order>> GetOrdersAsync()
+        public async Task<IEnumerable<Order>> GetOrdersAsync()
         {
             using (var connection = new SqliteConnection(_connectionString))
             {
@@ -34,11 +34,11 @@ namespace Ordering.Api.Application.Queries
                 if (result.AsList().Count > 0)
                     return MapOrders(result);
 
-                return null;
+                return Enumerable.Empty<Order>();
             }
         }
 
-        public async Task<ViewModels.Order> GetOrderByIdAsync(Guid id)
+        public async Task<Order> GetOrderByIdAsync(Guid id)
         {
             using (var connection = new SqliteConnection(_connectionString))
             {
@@ -59,7 +59,7 @@ namespace Ordering.Api.Application.Queries
             }
         }
 
-        public async Task<IEnumerable<ViewModels.Order>> GetOrdesByProductIdAsync(Guid productId)
+        public async Task<IEnumerable<Order>> GetOrdesByProductIdAsync(Guid productId)
         {
             using (var connection = new SqliteConnection(_connectionString))
             {
@@ -76,13 +76,13 @@ namespace Ordering.Api.Application.Queries
                 if (result.AsList().Count > 0)
                     return MapOrders(result);
 
-                return null;
+                return Enumerable.Empty<Order>();
             }
         }
 
-        private List<ViewModels.Order> MapOrders(IEnumerable<dynamic> results)
+        private List<Order> MapOrders(IEnumerable<dynamic> results)
         {
-            var orders = new List<ViewModels.Order>();
+            var orders = new List<Order>();
 
             foreach (var result in results)
             {
@@ -92,9 +92,9 @@ namespace Ordering.Api.Application.Queries
             return orders;
         }
 
-        private ViewModels.Order MapOrder(dynamic result)
+        private Order MapOrder(dynamic result)
         {
-            var order = new ViewModels.Order
+            var order = new Order
             {
                 Id = new Guid(result.Id),
                 OrderProduct = new Product
