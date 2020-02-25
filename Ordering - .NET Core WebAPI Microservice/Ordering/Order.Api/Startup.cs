@@ -42,52 +42,10 @@ namespace Ordering.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc(options =>
-            {
-                options.EnableEndpointRouting = false;
-                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
-            })
-            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-            .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
-            .AddControllersAsServices();  //Injecting Controllers themselves thru DI
-                                              //For further info see: http://docs.autofac.org/en/latest/integration/aspnetcore.html#controllers-as-services
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder
-                    .SetIsOriginAllowed((host) => true)
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
-            });
-
-            string migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-            string connectionString = Configuration["ConnectionString"];
-
-            services.AddDbContext<OrderContext>(options =>
-                    {
-                        options.UseSqlite(connectionString,
-                            sqliteOptionsAction: sqlOptions =>
-                            {
-                                sqlOptions.MigrationsAssembly(migrationsAssembly);
-                            });
-                    },
-                        ServiceLifetime.Scoped  //Showing explicitly that the DbContext is shared across the HTTP request scope (graph of objects started in the HTTP request)
-                    );
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Description = "Api for Ordering",
-                    Title = "Ordering API"
-                });
-            });
-
-            services.AddOptions();
+            services.AddCustomMvc()
+                .AddCustomDbContext(Configuration)
+                .AddCustomSwagger(Configuration)
+                .AddOptions();
         }
 
         //configure autofac
@@ -129,6 +87,69 @@ namespace Ordering.Api
             {
                 c.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "Ordering API V1");
             });
+        }
+    }
+
+    static class CustomExtensionsMethods
+    {
+        public static IServiceCollection AddCustomMvc(this IServiceCollection services)
+        {
+            // Add framework services.
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+            .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
+            .AddControllersAsServices();  //Injecting Controllers themselves thru DI
+                                          //For further info see: http://docs.autofac.org/en/latest/integration/aspnetcore.html#controllers-as-services
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            string migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            string connectionString = configuration["ConnectionString"];
+
+            services.AddDbContext<OrderContext>(options =>
+            {
+                options.UseSqlite(connectionString,
+                    sqliteOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.MigrationsAssembly(migrationsAssembly);
+                    });
+            },
+                ServiceLifetime.Scoped  //Showing explicitly that the DbContext is shared across the HTTP request scope (graph of objects started in the HTTP request)
+            );
+
+            return services;
+        }
+
+        public static IServiceCollection AddCustomSwagger(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Description = "Api for Ordering",
+                    Title = "Ordering API"
+                });
+            });
+
+            return services;
         }
     }
 }
