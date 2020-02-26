@@ -7,9 +7,9 @@ namespace Ordering.Api.Application.Queries
 {
     public interface IOrderQueries
     {
-        Task<IEnumerable<ViewModels.Order>> GetOrdersAsync();
-        Task<ViewModels.Order> GetOrderByIdAsync(Guid id);
-        Task<IEnumerable<ViewModels.Order>> GetOrdesByProductIdAsync(Guid productId);
+        Task<IEnumerable<Order>> GetOrdersAsync();
+        Task<Order> GetOrderByIdAsync(Guid id);
+        Task<IEnumerable<Order>> GetOrdersByProductIdAsync(Guid productId);
 
     }
 }

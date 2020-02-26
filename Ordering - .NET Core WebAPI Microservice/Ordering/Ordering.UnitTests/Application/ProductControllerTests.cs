@@ -16,13 +16,13 @@ using Xunit;
 
 namespace Ordering.UnitTests.Application
 {
-    public class ProductsWebApiTests
+    public class ProductControllerTests
     {
         private readonly Mock<IMediator> _mediatorMock;
         private readonly Mock<IProductQueries> _productQueriesMock;
         private readonly Mock<ILogger<ProductController>> _loggerMock;
 
-        public ProductsWebApiTests()
+        public ProductControllerTests()
         {
             _mediatorMock = new Mock<IMediator>();
             _productQueriesMock = new Mock<IProductQueries>();
@@ -130,7 +130,22 @@ namespace Ordering.UnitTests.Application
         }
 
         [Fact]
-        public async Task Delete_product_passing_Id_success()
+        public async Task Update_product_non_existing_id_fail()
+        {
+            //Arrange
+            _mediatorMock.Setup(m => m.Send(It.IsAny<UpdateProductCommand>(), It.IsAny<CancellationToken>()))
+                .ThrowsAsync(new KeyNotFoundException());
+
+            //Act
+            var productController = new ProductController(_mediatorMock.Object, _productQueriesMock.Object, _loggerMock.Object);
+
+            //Assert
+            await Assert.ThrowsAsync<KeyNotFoundException>(() => productController.UpdatedProduct(new UpdateProductCommand(new Guid(), "New Product", "Update Testing", (decimal)15.00)));
+
+        }
+
+        [Fact]
+        public async Task Delete_product_success()
         {
             //Arrange
             _mediatorMock.Setup(m => m.Send(It.IsAny<DeleteProductCommand>(), It.IsAny<CancellationToken>()))
@@ -142,6 +157,21 @@ namespace Ordering.UnitTests.Application
 
             //Assert
             Assert.True(actionResult.Value);
+
+        }
+
+        [Fact]
+        public async Task Delete_product_non_existing_id_fail()
+        {
+            //Arrange
+            _mediatorMock.Setup(m => m.Send(It.IsAny<DeleteProductCommand>(), It.IsAny<CancellationToken>()))
+                .ThrowsAsync(new KeyNotFoundException());
+
+            //Act
+            var productController = new ProductController(_mediatorMock.Object, _productQueriesMock.Object, _loggerMock.Object);
+
+            //Assert
+            await Assert.ThrowsAsync<KeyNotFoundException>(() => productController.DeleteProduct(new Guid()));
 
         }
     }

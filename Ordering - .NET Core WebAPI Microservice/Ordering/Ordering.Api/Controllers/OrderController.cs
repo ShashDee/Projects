@@ -53,9 +53,9 @@ namespace Ordering.Api.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByNameAsync(Guid productId)
+        public async Task<ActionResult<IEnumerable<Product>>> GetOrdersByProductIdAsync(Guid productId)
         {
-            var orders = await _orderQueries.GetOrdesByProductIdAsync(productId);
+            var orders = await _orderQueries.GetOrdersByProductIdAsync(productId);
 
             return Ok(orders);
         }

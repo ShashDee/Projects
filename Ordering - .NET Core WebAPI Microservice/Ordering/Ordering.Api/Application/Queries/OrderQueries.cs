@@ -59,7 +59,7 @@ namespace Ordering.Api.Application.Queries
             }
         }
 
-        public async Task<IEnumerable<Order>> GetOrdesByProductIdAsync(Guid productId)
+        public async Task<IEnumerable<Order>> GetOrdersByProductIdAsync(Guid productId)
         {
             using (var connection = new SqliteConnection(_connectionString))
             {

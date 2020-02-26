@@ -7,7 +7,6 @@ namespace Ordering.Api
 {
     public class OrderSettings
     {
-        public bool UseCustomizationData { get; set; }
         public string ConnectionString { get; set; }
     }
 }

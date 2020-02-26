@@ -19,8 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Order.Api\Ordering.Api.csproj" />
-    <ProjectReference Include="..\Order.Domain\Ordering.Domain.csproj" />
+    <ProjectReference Include="..\Ordering.Api\Ordering.Api.csproj" />
+    <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\" />
   </ItemGroup>
 
 </Project>
