@@ -1,0 +1,282 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.UnitTests\\TFNValidatorApp.UnitTests.csproj": {}
+  },
+  "projects": {
+    "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Api\\TFNValidatorApp.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Api\\TFNValidatorApp.Api.csproj",
+        "projectName": "TFNValidatorApp.Api",
+        "projectPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Api\\TFNValidatorApp.Api.csproj",
+        "packagesPath": "C:\\Users\\shash\\.nuget\\packages\\",
+        "outputPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\shash\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/msscloud/_packaging/cloud_suite/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Application\\TFNValidatorApp.Application.csproj": {
+                "projectPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Application\\TFNValidatorApp.Application.csproj"
+              },
+              "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Domain\\TFNValidatorApp.Domain.csproj": {
+                "projectPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Domain\\TFNValidatorApp.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.SpaServices.Extensions": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Application\\TFNValidatorApp.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Application\\TFNValidatorApp.Application.csproj",
+        "projectName": "TFNValidatorApp.Application",
+        "projectPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Application\\TFNValidatorApp.Application.csproj",
+        "packagesPath": "C:\\Users\\shash\\.nuget\\packages\\",
+        "outputPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\shash\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/msscloud/_packaging/cloud_suite/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Domain\\TFNValidatorApp.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Domain\\TFNValidatorApp.Domain.csproj",
+        "projectName": "TFNValidatorApp.Domain",
+        "projectPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Domain\\TFNValidatorApp.Domain.csproj",
+        "packagesPath": "C:\\Users\\shash\\.nuget\\packages\\",
+        "outputPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\shash\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/msscloud/_packaging/cloud_suite/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.UnitTests\\TFNValidatorApp.UnitTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.UnitTests\\TFNValidatorApp.UnitTests.csproj",
+        "projectName": "TFNValidatorApp.UnitTests",
+        "projectPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.UnitTests\\TFNValidatorApp.UnitTests.csproj",
+        "packagesPath": "C:\\Users\\shash\\.nuget\\packages\\",
+        "outputPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.UnitTests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\shash\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/msscloud/_packaging/cloud_suite/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Api\\TFNValidatorApp.Api.csproj": {
+                "projectPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Api\\TFNValidatorApp.Api.csproj"
+              },
+              "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Application\\TFNValidatorApp.Application.csproj": {
+                "projectPath": "F:\\LAB Group assessment\\TFN Validator\\TFNValidatorApp\\TFNValidatorApp.Application\\TFNValidatorApp.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.13.1, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[3.13.0, )"
+            },
+            "nunit": {
+              "target": "Package",
+              "version": "[3.12.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
