@@ -8,4 +8,6 @@ If you are running it using the .exe file please include the text file in the sa
 
 The hands won by player 1 and 2 will be printed and if by any chance there were unbreak ties the count of this will be printed as well.
 
+Please note when evaluating for a royal flush the application will check for Ten, Jack, Queen, King and Ace only, not the order it is in, as the task specification doesn't mention it should be in consecutive order.
+
 Thank you.
